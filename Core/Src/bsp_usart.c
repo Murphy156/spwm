@@ -1,6 +1,8 @@
-
+#include "main.h"
 #include "bsp_led.h"
 #include "bsp_usart.h"
+#include "bsp_spwm.h"
+#include "bsp_motor_control.h"
 
 UART_HandleTypeDef UartHandle;
 
@@ -271,7 +273,8 @@ int8_t receiving_process(void)
     uint8_t cmd_type = CMD_NONE;
     uint8_t header_CRC_Ready_flat;
     uint32_t tmp_para;            /** 注意，参数的有可能是负数，如果是负数时，传输过来的数据是补码 */
-
+    float speed;
+    float set_Freq = 0;
 
     while (1)
     {
@@ -298,7 +301,15 @@ int8_t receiving_process(void)
 
                 case SpeedGo_CMD:
                 {
-                    LED2_ON;
+                    tmp_para = mergeParametersToUint64();
+                    speed = (float)tmp_para;
+                    set_Freq = set_bldcm_speed(speed);
+                    set_bldcm_enable();
+                    while ((freq < set_Freq))
+                    {
+                        HAL_Delay(10);
+                        config_Sinusoidal( freq += Accel );
+                    }
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */
                     rd_p = (rd_p+3) % max_length;
                 }
@@ -321,9 +332,9 @@ int8_t receiving_process(void)
 
                 case Stop_CMD:
                 {
-                    LED1_ON;
+                    set_bldcm_disable();
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */
-                    rd_p = (rd_p+3) % max_length;
+                    rd_p = (rd_p+11) % max_length;
                 }
                     break;
 
@@ -339,7 +350,9 @@ int8_t receiving_process(void)
                 {
                     LED3_ON;
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */
-                    rd_p = (rd_p+3) % max_length;
+//                    rd_p = (rd_p+3) % max_length;
+                    __set_FAULTMASK(1);
+                    NVIC_SystemReset();
                 }
                     break;
 

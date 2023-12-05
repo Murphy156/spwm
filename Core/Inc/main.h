@@ -30,6 +30,9 @@ extern "C" {
 #include "stm32f4xx_hal.h"
 
 
+extern  float freq;
+
+
 void SystemClock_Config(void);
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */

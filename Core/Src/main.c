@@ -17,11 +17,9 @@
 #include "bsp_motor_tim.h"
 #include "bsp_usart.h"
 #include "bsp_spwm.h"
+#include "bsp_motor_control.h"
 
 //void MX_FREERTOS_Init(void);
-
-extern float  Volt_Freq;
-extern  int32_t  Accel;
 
 
 /**半周期正弦波，幅值256，频率为1Hz */
@@ -62,14 +60,18 @@ uint8_t SinTable[256]={// 0 ~ ¦Ð
 
 int32_t  SamplePoint = sizeof(SinTable)/sizeof(SinTable[0]); //标准正弦波点数
 
+float freq = 5;    // 初始频率
+
 /**
   * @brief  The application entry point.
   * @retval int
   */
 int main(void)
 {
-    float freq = 5;    // ³õÊ¼ÆµÂÊÖµ
+    float set_Freq = 0;
+//    float freq = 5;    // 初始频率
     float max =  60.0f;
+    uint8_t motor1_en_flag = 0;
     HAL_Init();
     /** 初始化系统时钟为168MHz */
     SystemClock_Config();
@@ -79,39 +81,40 @@ int main(void)
     DRV8303_Init();
     /** 初始化按键G PIO */
     Key_GPIO_Config();
-    /** 初始化电机 */
     /** 初始化USART 配置模式为 115200 8-N-1，中断接收 */
-//    USART_Config();
+    USART_Config();
+    /** 初始化电机 */
     TIMx_Configuration();
 
     config_Sinusoidal(0);
     set_MotorDir(CW);
-    /** 开启定时器通道1输出PWM */
-    HAL_TIM_PWM_Start(&motor1_htimx_bldcm,TIM_CHANNEL_1);
-    HAL_TIMEx_PWMN_Start(&motor1_htimx_bldcm, TIM_CHANNEL_1);
-
-    /** 开启定时器通道2输出PWM */
-    HAL_TIM_PWM_Start(&motor1_htimx_bldcm,TIM_CHANNEL_2);
-    HAL_TIMEx_PWMN_Start(&motor1_htimx_bldcm, TIM_CHANNEL_2);
-
-    /** 开启定时器通道3输出PWM */
-    HAL_TIM_PWM_Start(&motor1_htimx_bldcm,TIM_CHANNEL_3);
-    HAL_TIMEx_PWMN_Start(&motor1_htimx_bldcm, TIM_CHANNEL_3);
 
     HAL_TIM_Base_Start_IT(&motor1_htimx_bldcm);
-
-    HAL_Delay(3000);
     while (1)
     {
-        HAL_Delay(10);
-        config_Sinusoidal( freq += Accel );
-        if( (freq>=60) || ( freq<=-60 ) )
+        receiving_process();
+        if (Key_Scan(KEY1_GPIO_PORT, KEY1_PIN) == KEY_ON)
         {
-            Volt_Freq = 0.2f;
+            if(!motor1_en_flag)
+            {
+                LED1_ON;
+                set_Freq = set_bldcm_speed(1800);
+                set_bldcm_enable();
+                while ((freq < set_Freq))
+                {
+                    HAL_Delay(10);
+                    config_Sinusoidal( freq += Accel );
+                }
+            } else{
+                LED1_OFF;
+                set_bldcm_disable();
+            }
+            motor1_en_flag = !motor1_en_flag;
         }
-        if( (freq >= max ) || (freq <= -max))
+
+        if (Key_Scan(KEY2_GPIO_PORT, KEY2_PIN) == KEY_ON)
         {
-            freq -= Accel;
+            set_bldcm_disable();
         }
     }
 }

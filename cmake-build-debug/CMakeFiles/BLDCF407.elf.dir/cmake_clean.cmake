@@ -10,6 +10,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_key.c.obj.d"
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_led.c.obj"
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_led.c.obj.d"
+  "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_control.c.obj"
+  "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_control.c.obj.d"
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_tim.c.obj"
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_tim.c.obj.d"
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_spwm.c.obj"

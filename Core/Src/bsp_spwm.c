@@ -3,6 +3,7 @@
 //
 #include "bsp_spwm.h"
 #include "math.h"
+#include "bsp_motor_control.h"
 
 float  Volt_Freq   = 0.2;     //V/F 控制量
 int32_t Accel      = 1;       //加速度
@@ -62,11 +63,13 @@ void set_MotorDir(MotorDir_Typedef Dir)
     {
         sin2TableIndex = (tmp+171)%(2*SamplePoint);         //相位差120°，正弦表数据为差171
         sin3TableIndex = (sin2TableIndex+171)%(2*SamplePoint);// 相位差120°，正弦表数据为差341
+        bldcm_data.direction = CCW;
     }
     else
     {
         sin3TableIndex = (tmp+171)%(2*SamplePoint);
         sin2TableIndex = (sin3TableIndex+171)%(2*SamplePoint);
+        bldcm_data.direction = CW;
     }
 }
 
@@ -106,7 +109,6 @@ static uint16_t map(uint16_t sinx, uint16_t out_max)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-//  LED2_ON;
     int32_t CCR1 = 0;
     int32_t CCR2 = 0;
     int32_t CCR3 = 0;
@@ -145,7 +147,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         sin2TableIndex = 0;
     if( sin3TableIndex >= 2*SamplePoint)
         sin3TableIndex = 0;
-//  LED2_OFF;
 }
 
 

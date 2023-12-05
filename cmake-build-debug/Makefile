@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\Clion\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "E:\CLion\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "D:\Clion\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "E:\CLion\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\uoc11\Desktop\STM32F407\STM32F407-spwm
+CMAKE_SOURCE_DIR = C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\uoc11\Desktop\STM32F407\STM32F407-spwm\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = C:\Users\uoc11\Desktop\STM32F407\STM32F407-spwm\cmake-build-d
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"D:\Clion\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"E:\CLion\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"D:\Clion\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"E:\CLion\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\uoc11\Desktop\STM32F407\STM32F407-spwm\cmake-build-debug\CMakeFiles C:\Users\uoc11\Desktop\STM32F407\STM32F407-spwm\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\cmake-build-debug\CMakeFiles C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\uoc11\Desktop\STM32F407\STM32F407-spwm\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -223,6 +223,30 @@ Core/Src/bsp_led.s: Core/Src/bsp_led.c.s
 Core/Src/bsp_led.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_led.c.s
 .PHONY : Core/Src/bsp_led.c.s
+
+Core/Src/bsp_motor_control.obj: Core/Src/bsp_motor_control.c.obj
+.PHONY : Core/Src/bsp_motor_control.obj
+
+# target to build an object file
+Core/Src/bsp_motor_control.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_control.c.obj
+.PHONY : Core/Src/bsp_motor_control.c.obj
+
+Core/Src/bsp_motor_control.i: Core/Src/bsp_motor_control.c.i
+.PHONY : Core/Src/bsp_motor_control.i
+
+# target to preprocess a source file
+Core/Src/bsp_motor_control.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_control.c.i
+.PHONY : Core/Src/bsp_motor_control.c.i
+
+Core/Src/bsp_motor_control.s: Core/Src/bsp_motor_control.c.s
+.PHONY : Core/Src/bsp_motor_control.s
+
+# target to generate assembly for a file
+Core/Src/bsp_motor_control.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_control.c.s
+.PHONY : Core/Src/bsp_motor_control.c.s
 
 Core/Src/bsp_motor_tim.obj: Core/Src/bsp_motor_tim.c.obj
 .PHONY : Core/Src/bsp_motor_tim.obj
@@ -1309,6 +1333,9 @@ help:
 	@echo ... Core/Src/bsp_led.obj
 	@echo ... Core/Src/bsp_led.i
 	@echo ... Core/Src/bsp_led.s
+	@echo ... Core/Src/bsp_motor_control.obj
+	@echo ... Core/Src/bsp_motor_control.i
+	@echo ... Core/Src/bsp_motor_control.s
 	@echo ... Core/Src/bsp_motor_tim.obj
 	@echo ... Core/Src/bsp_motor_tim.i
 	@echo ... Core/Src/bsp_motor_tim.s

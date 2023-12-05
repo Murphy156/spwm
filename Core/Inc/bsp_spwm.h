@@ -26,6 +26,9 @@ typedef enum {
     CW,
 }MotorDir_Typedef;
 
+extern float  Volt_Freq;
+extern  int32_t  Accel;
+
 void config_Sinusoidal( float Fre);
 void TuneSinAmp( uint16_t Amplitude);
 void set_MotorDir(MotorDir_Typedef Dir);
