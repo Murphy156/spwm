@@ -60,8 +60,45 @@ extern TIM_HandleTypeDef                  motor1_htimx_bldcm;
 #define MOTOR1_OCNPWM3_AF				 GPIO_AF1_TIM1
 
 
+/***************************** 霍尔传感器定时器 *****************************/
+#define MOTOR_HALL_TIM           		 TIM3
+#define MOTOR_HALL_TIM_CLK_ENABLE()  	 __TIM3_CLK_ENABLE()
+
+extern TIM_HandleTypeDef                 motor1_htimx_hall;
+
+/** 累计 TIM_Period个后产生一个更新或者中断
+	当定时器从0计数到4999，即为5000次，为一个定时周期 */
+#define MOTOR_HALL_PERIOD_COUNT          (0xFFFF)
+
+/** 高级控制定时器时钟源TIMxCLK = HCLK / 2 = 84MHz
+	 设定定时器频率为 = TIMxCLK / (PWM_PRESCALER_COUNT + 1) / PWM_PERIOD_COUNT = 10.01Hz
+   周期 T = 100ms */
+#define MOTOR_HALL_PRESCALER_COUNT       (128)
+
+/** TIM3 通道 1 引脚 */
+#define MOTOR_HALL_INPUTU_PIN           		    GPIO_PIN_6
+#define MOTOR_HALL_INPUTU_GPIO_PORT     		    GPIOC
+#define MOTOR_HALL_INPUTU_GPIO_CLK_ENABLE() 	    __GPIOC_CLK_ENABLE()
+#define MOTOR_HALL_INPUTU_AF					    GPIO_AF2_TIM3
+
+/** TIM3 通道 2 引脚 */
+#define MOTOR_HALL_INPUTV_PIN           		    GPIO_PIN_7
+#define MOTOR_HALL_INPUTV_GPIO_PORT     		    GPIOC
+#define MOTOR_HALL_INPUTV_GPIO_CLK_ENABLE() 	    __GPIOC_CLK_ENABLE()
+#define MOTOR_HALL_INPUTV_AF					    GPIO_AF2_TIM3
+
+/** TIM3 通道 3 引脚 */
+#define MOTOR_HALL_INPUTW_PIN           		    GPIO_PIN_8
+#define MOTOR_HALL_INPUTW_GPIO_PORT     		    GPIOC
+#define MOTOR_HALL_INPUTW_GPIO_CLK_ENABLE() 	    __GPIOC_CLK_ENABLE()
+#define MOTOR_HALL_INPUTW_AF					    GPIO_AF2_TIM3
+
+#define MOTOR_HALL_TIM_IRQn                         TIM3_IRQn
+#define MOTOR_HALL_TIM_IRQHandler                   TIM3_IRQHandler
+
 void TIMx_Configuration(void);
-
-
+void hall_motor_enable(void);
+void hall_motor_disable(void);
+uint8_t get_hall_state(void);
 
 #endif //CPROJECT_BSP_MOTOR_TIM_H

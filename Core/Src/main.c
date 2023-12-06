@@ -69,7 +69,6 @@ float freq = 5;    // 初始频率
 int main(void)
 {
     float set_Freq = 0;
-//    float freq = 5;    // 初始频率
     float max =  60.0f;
     uint8_t motor1_en_flag = 0;
     HAL_Init();

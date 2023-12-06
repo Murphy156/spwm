@@ -275,7 +275,10 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_tim.c.obj: C:/Users/aoc11/Desktop
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_usart.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/main.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_led.h
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_led.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_spwm.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_motor_tim.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/main.h
 
 CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_spwm.c.obj: C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_spwm.c \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_spwm.h \

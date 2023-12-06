@@ -31,7 +31,7 @@ extern "C" {
 
 
 extern  float freq;
-
+extern uint8_t SinTable[256];
 
 void SystemClock_Config(void);
 /* Private includes ----------------------------------------------------------*/

@@ -354,9 +354,6 @@ int8_t receiving_process(void)
                     __set_FAULTMASK(1);
                     NVIC_SystemReset();
                 }
-                    break;
-
-
                 default:
                     return -1;
             }
