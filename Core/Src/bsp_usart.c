@@ -304,6 +304,7 @@ int8_t receiving_process(void)
                     tmp_para = mergeParametersToUint64();
                     speed = (float)tmp_para;
                     set_Freq = set_bldcm_speed(speed);
+                    hall_motor_enable();
                     set_bldcm_enable();
                     while ((freq < set_Freq))
                     {
@@ -333,6 +334,7 @@ int8_t receiving_process(void)
                 case Stop_CMD:
                 {
                     set_bldcm_disable();
+                    hall_motor_disable;
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */
                     rd_p = (rd_p+11) % max_length;
                 }

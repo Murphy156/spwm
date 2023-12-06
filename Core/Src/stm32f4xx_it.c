@@ -29,6 +29,7 @@
 #include "bsp_led.h"
 #include "bsp_motor_tim.h"
 #include "bsp_usart.h"
+#include "bsp_basic_tim.h"
 /** USER CODE END 0 */
 
 /* Private includes ----------------------------------------------------------*/
@@ -210,4 +211,22 @@ void USART_IRQHandler(void)
 void MOTOR1_TIM_OC_IRQHANDLER ()
 {
     HAL_TIM_IRQHandler(&motor1_htimx_bldcm);
+}
+
+/**
+  * @brief  This function handles TIM interrupt request.
+  * @param  None
+  * @retval None
+  */
+void BASIC_TIM_IRQHandler (void)
+{
+    HAL_TIM_IRQHandler(&TIM_TimeBaseStructure);
+}
+
+/*void PPP_IRQHandler(void)
+{
+}*/
+void MOTOR_HALL_TIM_IRQHandler(void)
+{
+    HAL_TIM_IRQHandler(&motor_htimx_hall);
 }

@@ -96,4 +96,5 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/main.c.obj: \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_spwm.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_motor_tim.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_motor_control.h \
- C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_spwm.h
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_spwm.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_basic_tim.h

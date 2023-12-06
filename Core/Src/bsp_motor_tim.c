@@ -11,6 +11,9 @@
 #include "bsp_led.h"
 #include "bsp_spwm.h"
 #include "main.h"
+#include "bsp_motor_control.h"
+#include "bsp_basic_tim.h"
+#include "bsp_usart.h"
 
 TIM_HandleTypeDef  motor1_htimx_bldcm;
 TIM_OC_InitTypeDef MOTOR1_TIM_OCInitStructure;
@@ -20,6 +23,8 @@ TIM_BreakDeadTimeConfigTypeDef MOTOR1_BreakDeadTimeConfig;
 
 /** 霍尔传感器相关定时器初始出 */
 TIM_HandleTypeDef motor_htimx_hall;
+
+static void update_speed_dir(uint8_t dir_in);
 
 /**
   * @brief  配置TIM复用输出PWM时用到的I/O
@@ -238,7 +243,6 @@ void hall_motor_enable(void)
     __HAL_TIM_ENABLE_IT(&motor_htimx_hall, TIM_IT_TRIGGER);
     __HAL_TIM_ENABLE_IT(&motor_htimx_hall, TIM_IT_UPDATE);
     HAL_TIMEx_HallSensor_Start(&motor_htimx_hall);
-    HAL_TIM_TriggerCallback(&motor_htimx_hall);   /** 执行一次换相 */
 }
 
 /**
@@ -297,9 +301,150 @@ void TIMx_Configuration(void)
 }
 
 /***************************** 测速部分代码 *****************************/
+
+/**
+ * @brief  更新转速，并且清楚100ms内更新速度一次
+ * @param  方向
+ * @param  一个脉冲的时间
+ * @retval 无
+ * */
 static uint8_t count = 0;
+static void update_motor_speed(uint8_t dir_in, uint32_t time)
+{
+    int speed_temp = 0;
+    static int flag = 0;
+    float f = 0;
+    /** 计算速度：
+   电机每转一圈共用12个脉冲，(1.0/(84000000.0/128.0)为计数器的周期，(1.0/(84000000.0/128.0) * time)为时间长。*/
+    if (time == 0)
+        bldcm_data.speed_group[count++] = 0;
+    else{
+        /**
+         *  time 现在表示单个脉冲的持续时间。
+         *  我们需要知道每个脉冲代表电机转子转动的角度。假设您的电机和霍尔传感器配置是每转一圈产生12个脉冲，那么每个脉冲代表电机转动30°（360° / 12）。
+         * */
+        f = (1.0f / (84000000.0f / MOTOR_HALL_PRESCALER_COUNT) * time);
+        /**
+         * 然后，计算电机转一圈所需的时间（秒）
+         * */
+        f = f * 12.0f;
+        /**
+         * 计算转速（转/分钟）
+         * */
+        f = 1.0f / (f / 60.0f);
+        bldcm_data.speed_group[count++] = f;
+    }
+    update_speed_dir(dir_in);
+    if(count >= SPEED_FILTER_NUM)
+    {
+        flag = 1;
+        count = 0;
+    }
+    speed_temp = 0;
+    /** 计算近 SPEED_FILTER_NUM 次的速度平均值（滤波） */
+    if (flag)
+    {
+        for (uint8_t c=0; c<SPEED_FILTER_NUM; c++)
+        {
+            speed_temp += bldcm_data.speed_group[c];
+        }
+        bldcm_data.speed = speed_temp/ SPEED_FILTER_NUM;
+    }
+    else
+    {
+        for (uint8_t c=0; c<count; c++)
+        {
+            speed_temp += bldcm_data.speed_group[c];
+        }
+        bldcm_data.speed = speed_temp / count;
+    }
+}
 
+/**
+  * @brief  获取电机转速
+  * @param  time:获取的时间间隔
+  * @retval 返回电机转速
+  */
+float get_motor_speed(void)
+{
+    return bldcm_data.speed;
+}
 
+/**
+  * @brief  更新电机实际速度方向
+  * @param  dir_in：霍尔值
+  * @retval 无
+  */
+static void update_speed_dir(uint8_t dir_in)
+{
+    uint8_t step[6] = {1, 3, 2, 6, 4, 5};
+
+    static uint8_t num_old = 0;
+    uint8_t step_loc = 0;    /** 记录当前霍尔位置 */
+    int8_t dir = 1;
+
+    for (step_loc=0; step_loc<6; step_loc++)
+    {
+        if (step[step_loc] == dir_in)    /** 找到当前霍尔的位置 */
+        {
+            break;
+        }
+    }
+    /** 端点处理 */
+    if (step_loc == 0)
+    {
+        if (num_old == 1)
+        {
+            dir = 1;
+        }
+        else if (num_old == 5)
+        {
+            dir = -1;
+        }
+    }
+    /** 端点处理 */
+    else if (step_loc == 5)
+    {
+        if (num_old == 0)
+        {
+            dir = 1;
+        }
+        else if (num_old == 4)
+        {
+            dir = -1;
+        }
+    }
+    else if (step_loc > num_old)
+    {
+        dir = -1;
+    }
+    else if (step_loc < num_old)
+    {
+        dir = 1;
+    }
+
+    num_old = step_loc;
+//  motor_drive.speed *= dir;;
+    bldcm_data.speed_group[count-1]*= dir;
+}
+
+/**
+  * @brief  霍尔传感器触发回调函数
+  * @param  htim:定时器句柄
+  * @retval 无
+  */
+void HAL_TIM_TriggerCallback(TIM_HandleTypeDef *htim)
+{
+    /** 获取霍尔传感器引脚状态,作为换相的依据 */
+    uint8_t step = 0;
+    step = get_hall_state();
+
+    if (htim == &motor_htimx_hall)   /** 判断是否由触发中断产生 */
+    {
+        update_motor_speed(step, __HAL_TIM_GET_COMPARE(htim,TIM_CHANNEL_1));
+        bldcm_data.timeout = 0;
+    }
+}
 
 /**
   * @brief  定时器更新中断回调函数
@@ -324,9 +469,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         CCR3 = HalfMax + (Sin3Dir * CCR3);
         CCR3 = (SinAmp * CCR3) / 24;
 
-                __HAL_TIM_SetCompare(htim, TIM_CHANNEL_1, (uint16_t) CCR1);
-                __HAL_TIM_SetCompare(htim, TIM_CHANNEL_2, (uint16_t) CCR2);
-                __HAL_TIM_SetCompare(htim, TIM_CHANNEL_3, (uint16_t) CCR3);
+        __HAL_TIM_SetCompare(htim, TIM_CHANNEL_1, (uint16_t) CCR1);
+        __HAL_TIM_SetCompare(htim, TIM_CHANNEL_2, (uint16_t) CCR2);
+        __HAL_TIM_SetCompare(htim, TIM_CHANNEL_3, (uint16_t) CCR3);
 
         sin1TableIndex++;
         sin2TableIndex++;
@@ -345,8 +490,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
             sin2TableIndex = 0;
         if (sin3TableIndex >= 2 * SamplePoint)
             sin3TableIndex = 0;
-    } else if(htim == (&motor_htimx_hall)){
-
+    } else if(htim == (&TIM_TimeBaseStructure)){
+        int32_t speed = (int32_t)get_motor_speed();
+//        set_computer_Speed_Location_value(Send_Speed_CMD, speed);
+    }
+    else if(htim == (&motor_htimx_hall))
+    {
 
     }
 }
@@ -357,6 +506,5 @@ void HAL_TIM_OC_MspDeInit(TIM_HandleTypeDef* htim_base)
     if(htim_base->Instance== MOTOR1_TIM )
     {
         MOTOR1_TIM_RCC_CLK_DISABLE();
-
     }
 }

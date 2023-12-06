@@ -79,4 +79,5 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/stm32f4xx_it.c.obj: \
  c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_pthreadtypes.h \
  c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\sched.h \
  c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\types.h \
- c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\stdio.h
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\stdio.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_basic_tim.h

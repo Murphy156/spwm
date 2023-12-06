@@ -176,6 +176,30 @@ Core/Src/bsp_DRV8303.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_DRV8303.c.s
 .PHONY : Core/Src/bsp_DRV8303.c.s
 
+Core/Src/bsp_basic_tim.obj: Core/Src/bsp_basic_tim.c.obj
+.PHONY : Core/Src/bsp_basic_tim.obj
+
+# target to build an object file
+Core/Src/bsp_basic_tim.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_basic_tim.c.obj
+.PHONY : Core/Src/bsp_basic_tim.c.obj
+
+Core/Src/bsp_basic_tim.i: Core/Src/bsp_basic_tim.c.i
+.PHONY : Core/Src/bsp_basic_tim.i
+
+# target to preprocess a source file
+Core/Src/bsp_basic_tim.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_basic_tim.c.i
+.PHONY : Core/Src/bsp_basic_tim.c.i
+
+Core/Src/bsp_basic_tim.s: Core/Src/bsp_basic_tim.c.s
+.PHONY : Core/Src/bsp_basic_tim.s
+
+# target to generate assembly for a file
+Core/Src/bsp_basic_tim.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_basic_tim.c.s
+.PHONY : Core/Src/bsp_basic_tim.c.s
+
 Core/Src/bsp_key.obj: Core/Src/bsp_key.c.obj
 .PHONY : Core/Src/bsp_key.obj
 
@@ -1327,6 +1351,9 @@ help:
 	@echo ... Core/Src/bsp_DRV8303.obj
 	@echo ... Core/Src/bsp_DRV8303.i
 	@echo ... Core/Src/bsp_DRV8303.s
+	@echo ... Core/Src/bsp_basic_tim.obj
+	@echo ... Core/Src/bsp_basic_tim.i
+	@echo ... Core/Src/bsp_basic_tim.s
 	@echo ... Core/Src/bsp_key.obj
 	@echo ... Core/Src/bsp_key.i
 	@echo ... Core/Src/bsp_key.s

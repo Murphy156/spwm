@@ -18,6 +18,7 @@
 #include "bsp_usart.h"
 #include "bsp_spwm.h"
 #include "bsp_motor_control.h"
+#include "bsp_basic_tim.h"
 
 //void MX_FREERTOS_Init(void);
 
@@ -84,6 +85,8 @@ int main(void)
     USART_Config();
     /** 初始化电机 */
     TIMx_Configuration();
+    /** 基本定时器初始化 */
+    Basic_TIMx_Configuration();
 
     config_Sinusoidal(0);
     set_MotorDir(CW);
@@ -91,13 +94,14 @@ int main(void)
     HAL_TIM_Base_Start_IT(&motor1_htimx_bldcm);
     while (1)
     {
-        receiving_process();
+//        receiving_process();
         if (Key_Scan(KEY1_GPIO_PORT, KEY1_PIN) == KEY_ON)
         {
             if(!motor1_en_flag)
             {
                 LED1_ON;
                 set_Freq = set_bldcm_speed(1800);
+                hall_motor_enable();
                 set_bldcm_enable();
                 while ((freq < set_Freq))
                 {
@@ -106,6 +110,7 @@ int main(void)
                 }
             } else{
                 LED1_OFF;
+                hall_motor_disable();
                 set_bldcm_disable();
             }
             motor1_en_flag = !motor1_en_flag;

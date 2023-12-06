@@ -64,7 +64,7 @@ extern TIM_HandleTypeDef                  motor1_htimx_bldcm;
 #define MOTOR_HALL_TIM           		 TIM3
 #define MOTOR_HALL_TIM_CLK_ENABLE()  	 __TIM3_CLK_ENABLE()
 
-extern TIM_HandleTypeDef                 motor1_htimx_hall;
+extern TIM_HandleTypeDef                 motor_htimx_hall;
 
 /** 累计 TIM_Period个后产生一个更新或者中断
 	当定时器从0计数到4999，即为5000次，为一个定时周期 */

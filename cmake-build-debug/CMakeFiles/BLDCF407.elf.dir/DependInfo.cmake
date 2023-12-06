@@ -38,6 +38,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/adc.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/adc.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/adc.c.obj.d"
   "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_DRV8303.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_DRV8303.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_DRV8303.c.obj.d"
+  "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_basic_tim.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_basic_tim.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_basic_tim.c.obj.d"
   "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_key.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_key.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_key.c.obj.d"
   "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_led.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_led.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_led.c.obj.d"
   "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_motor_control.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_control.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_control.c.obj.d"

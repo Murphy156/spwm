@@ -46,4 +46,32 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_tim.c.obj: \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_led.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_spwm.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_motor_tim.h \
- C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/main.h
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/main.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_motor_control.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_spwm.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_basic_tim.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_usart.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\stdio.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\_ansi.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\newlib.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\config.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\ieeefp.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\cdefs.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdarg.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\reent.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\_ansi.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_types.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\_types.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\lock.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\types.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\endian.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\_endian.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\select.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_sigset.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_timeval.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\timespec.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_timespec.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_pthreadtypes.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\sched.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\types.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\stdio.h
