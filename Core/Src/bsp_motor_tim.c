@@ -76,7 +76,7 @@ static void TIM1_GPIO_Config(void)
     GPIO_InitStructure.Alternate = MOTOR1_OCPWM3_AF;
     HAL_GPIO_Init(MOTOR1_OCPWM3_GPIO_PORT, &GPIO_InitStructure);
 
-    HAL_NVIC_SetPriority(MOTOR1_TIM_IRQn,0,0);
+    HAL_NVIC_SetPriority(MOTOR1_TIM_IRQn,0,1);
     HAL_NVIC_EnableIRQ(MOTOR1_TIM_IRQn);
 }
 
@@ -217,7 +217,7 @@ static void hall_motor_tim_init(void)
     hall_sensor_cfg.Commutation_Delay = 0U;                                          /** 不使用延迟触发 */
     HAL_TIMEx_HallSensor_Init(&motor_htimx_hall, &hall_sensor_cfg);
 
-    HAL_NVIC_SetPriority(MOTOR_HALL_TIM_IRQn, 0, 1);    /** 设置中断优先级 */
+    HAL_NVIC_SetPriority(MOTOR_HALL_TIM_IRQn, 0, 0);    /** 设置中断优先级 */
     HAL_NVIC_EnableIRQ(MOTOR_HALL_TIM_IRQn);                                   /** 使能中断 */
 }
 
@@ -243,6 +243,7 @@ void hall_motor_enable(void)
     __HAL_TIM_ENABLE_IT(&motor_htimx_hall, TIM_IT_TRIGGER);
     __HAL_TIM_ENABLE_IT(&motor_htimx_hall, TIM_IT_UPDATE);
     HAL_TIMEx_HallSensor_Start(&motor_htimx_hall);
+    HAL_TIM_TriggerCallback(&motor_htimx_hall);
 }
 
 /**
@@ -441,6 +442,7 @@ void HAL_TIM_TriggerCallback(TIM_HandleTypeDef *htim)
 
     if (htim == &motor_htimx_hall)   /** 判断是否由触发中断产生 */
     {
+        LED3_TOGGLE
         update_motor_speed(step, __HAL_TIM_GET_COMPARE(htim,TIM_CHANNEL_1));
         bldcm_data.timeout = 0;
     }
@@ -492,7 +494,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
             sin3TableIndex = 0;
     } else if(htim == (&TIM_TimeBaseStructure)){
         int32_t speed = (int32_t)get_motor_speed();
-//        set_computer_Speed_Location_value(Send_Speed_CMD, speed);
+        set_computer_Speed_Location_value(Send_Speed_CMD, speed);
     }
     else if(htim == (&motor_htimx_hall))
     {
