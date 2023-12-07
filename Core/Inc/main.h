@@ -26,46 +26,33 @@
 extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
+/** Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 
+/** FreeRTOS头文件 */
+#include "FreeRTOS.h"
+#include "task.h"
 
 extern  float freq;
 extern uint8_t SinTable[256];
 
 void SystemClock_Config(void);
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 
-/* USER CODE END Includes */
+/**************************** 任务句柄 ********************************/
+/***
+ * 任务句柄是一个指针，用于指向一个任务，当任务创建好之后，它就具有了一个任务句柄
+ * 以后我们要想操作这个任务都需要通过这个任务句柄，如果是自身的任务操作自己，那么
+ * 这个句柄可以为NULL。
+ */
+static TaskHandle_t AppTaskCreate_Handle = NULL;
+static TaskHandle_t PROTOCOL_Task_Handle = NULL;
+static TaskHandle_t KEY_Task_Handle = NULL;
+static TaskHandle_t LED_Task_Handle = NULL;
 
-/* Exported types ------------------------------------------------------------*/
-/* USER CODE BEGIN ET */
 
-/* USER CODE END ET */
 
-/* Exported constants --------------------------------------------------------*/
-/* USER CODE BEGIN EC */
-
-/* USER CODE END EC */
-
-/* Exported macro ------------------------------------------------------------*/
-/* USER CODE BEGIN EM */
-
-/* USER CODE END EM */
-
-/* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
-/* USER CODE BEGIN EFP */
-
-/* USER CODE END EFP */
-
-/* Private defines -----------------------------------------------------------*/
-
-/* USER CODE BEGIN Private defines */
-
-/* USER CODE END Private defines */
 
 #ifdef __cplusplus
 }

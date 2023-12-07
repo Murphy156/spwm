@@ -286,6 +286,7 @@ int8_t receiving_process(void)
             /** 已经找到了帧头以及校对了CRC,此时，rd_p指向当前数据帧的命令位 */
         else
         {
+            taskENTER_CRITICAL();  /*** 进入临界区 */
 
             cmd_type = data_buff[rd_p];
             switch (cmd_type)
@@ -297,6 +298,7 @@ int8_t receiving_process(void)
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */
                     rd_p = (rd_p+3) % max_length;
                 }
+                    taskEXIT_CRITICAL();
                     break;
 
                 case SpeedGo_CMD:
@@ -314,6 +316,7 @@ int8_t receiving_process(void)
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */
                     rd_p = (rd_p+3) % max_length;
                 }
+                    taskEXIT_CRITICAL();
                     break;
 
                 case LocationGo_CMD:
@@ -322,6 +325,8 @@ int8_t receiving_process(void)
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */
                     rd_p = (rd_p+3) % max_length;
                 }
+                    taskEXIT_CRITICAL();
+                    break;
 
                 case TurnLeft_CMD:
                 {
@@ -329,6 +334,7 @@ int8_t receiving_process(void)
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */
                     rd_p = (rd_p+3) % max_length;
                 }
+                    taskEXIT_CRITICAL();
                     break;
 
                 case Stop_CMD:
@@ -338,6 +344,7 @@ int8_t receiving_process(void)
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */
                     rd_p = (rd_p+11) % max_length;
                 }
+                    taskEXIT_CRITICAL();
                     break;
 
                 case TurnRight_CMD:
@@ -346,6 +353,7 @@ int8_t receiving_process(void)
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */
                     rd_p = (rd_p+3) % max_length;
                 }
+                    taskEXIT_CRITICAL();
                     break;
 
                 case Reset_CMD:
@@ -357,6 +365,7 @@ int8_t receiving_process(void)
                     NVIC_SystemReset();
                 }
                 default:
+                    taskEXIT_CRITICAL();
                     return -1;
             }
 

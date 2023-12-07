@@ -985,8 +985,9 @@ currently used in ARMv8M ports. */
 	#define configENABLE_MPU 0
 #endif
 
-/* Set configENABLE_FPU to 1 to enable FPU support and 0 to disable it. This is
-currently used in ARMv8M ports. */
+/** Set configENABLE_FPU to 1 to enable FPU support and 0 to disable it. This is
+currently used in ARMv8M ports.
+ 用于在 FreeRTOS 中启用或禁用浮点单元（FPU）支持*/
 #ifndef configENABLE_FPU
 	#define configENABLE_FPU 1
 #endif

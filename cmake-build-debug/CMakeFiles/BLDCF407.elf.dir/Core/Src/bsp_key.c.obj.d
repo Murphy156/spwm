@@ -42,4 +42,38 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_key.c.obj: \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_tim_ex.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_uart.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_usart.h \
- C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/main.h
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/main.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/FreeRTOS.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/FreeRTOSConfig.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_usart.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\stdio.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\_ansi.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\newlib.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\config.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\ieeefp.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\cdefs.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdarg.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\reent.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\_ansi.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_types.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\_types.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\lock.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\types.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\endian.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\_endian.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\select.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_sigset.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_timeval.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\timespec.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_timespec.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_pthreadtypes.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\sched.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\types.h \
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\stdio.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/projdefs.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/portable.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/deprecated_definitions.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\portable\GCC\ARM_CM4F/portmacro.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/mpu_wrappers.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/task.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/list.h

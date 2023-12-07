@@ -43,13 +43,8 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_tim.c.obj: \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_uart.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_usart.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/main.h \
- C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_led.h \
- C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_spwm.h \
- C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_motor_tim.h \
- C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/main.h \
- C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_motor_control.h \
- C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_spwm.h \
- C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_basic_tim.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/FreeRTOS.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/FreeRTOSConfig.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_usart.h \
  c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\stdio.h \
  c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\_ansi.h \
@@ -74,4 +69,19 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_tim.c.obj: \
  c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_pthreadtypes.h \
  c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\sched.h \
  c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\types.h \
- c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\stdio.h
+ c:\gcc\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\stdio.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/projdefs.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/portable.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/deprecated_definitions.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\portable\GCC\ARM_CM4F/portmacro.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/mpu_wrappers.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/task.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/list.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_led.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_spwm.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_motor_tim.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/main.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_motor_control.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_spwm.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_basic_tim.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_usart.h
