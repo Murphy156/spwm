@@ -24,6 +24,13 @@ TIM_BreakDeadTimeConfigTypeDef MOTOR1_BreakDeadTimeConfig;
 /** 霍尔传感器相关定时器初始出 */
 TIM_HandleTypeDef motor_htimx_hall;
 
+__IO uint32_t RT_hallcomp = 0;  /** 霍尔计数值 */
+__IO uint32_t RT_hallcnt = 0;   /** 霍尔计数值 */
+__IO uint32_t RT_hallPhase = 0; /** 霍尔信号相位 RT-> Real Time */
+uint32_t LS_hallPhase = 0;      /** 上一次的霍尔信号相位 */
+const uint8_t HallDirCcw [7] = {0, 5, 3, 1, 6, 4, 2};    /** PMSM 的逆时针旋转序列 */
+MotorDir_Typedef RT_hallDir = CCW;
+
 static void update_speed_dir(uint8_t dir_in);
 
 /**
@@ -76,7 +83,7 @@ static void TIM1_GPIO_Config(void)
     GPIO_InitStructure.Alternate = MOTOR1_OCPWM3_AF;
     HAL_GPIO_Init(MOTOR1_OCPWM3_GPIO_PORT, &GPIO_InitStructure);
 
-    HAL_NVIC_SetPriority(MOTOR1_TIM_IRQn,0,1);
+    HAL_NVIC_SetPriority(MOTOR1_TIM_IRQn,0,0);
     HAL_NVIC_EnableIRQ(MOTOR1_TIM_IRQn);
 }
 
@@ -217,7 +224,7 @@ static void hall_motor_tim_init(void)
     hall_sensor_cfg.Commutation_Delay = 0U;                                          /** 不使用延迟触发 */
     HAL_TIMEx_HallSensor_Init(&motor_htimx_hall, &hall_sensor_cfg);
 
-    HAL_NVIC_SetPriority(MOTOR_HALL_TIM_IRQn, 0, 0);    /** 设置中断优先级 */
+    HAL_NVIC_SetPriority(MOTOR_HALL_TIM_IRQn, 1, 0);    /** 设置中断优先级 */
     HAL_NVIC_EnableIRQ(MOTOR_HALL_TIM_IRQn);                                   /** 使能中断 */
 }
 
@@ -243,7 +250,6 @@ void hall_motor_enable(void)
     __HAL_TIM_ENABLE_IT(&motor_htimx_hall, TIM_IT_TRIGGER);
     __HAL_TIM_ENABLE_IT(&motor_htimx_hall, TIM_IT_UPDATE);
     HAL_TIMEx_HallSensor_Start(&motor_htimx_hall);
-    HAL_TIM_TriggerCallback(&motor_htimx_hall);
 }
 
 /**
@@ -257,6 +263,7 @@ void hall_motor_disable(void)
     __HAL_TIM_DISABLE_IT(&motor_htimx_hall, TIM_IT_TRIGGER);
     __HAL_TIM_DISABLE_IT(&motor_htimx_hall, TIM_IT_UPDATE);
     HAL_TIMEx_HallSensor_Stop(&motor_htimx_hall);
+    bldcm_data.speed = 0;
 }
 
 /**
@@ -443,9 +450,41 @@ void HAL_TIM_TriggerCallback(TIM_HandleTypeDef *htim)
     if (htim == &motor_htimx_hall)   /** 判断是否由触发中断产生 */
     {
         LED3_TOGGLE
-        update_motor_speed(step, __HAL_TIM_GET_COMPARE(htim,TIM_CHANNEL_1));
-        bldcm_data.timeout = 0;
+        RT_hallcomp += __HAL_TIM_GET_COMPARE(htim, TIM_CHANNEL_1);
+        RT_hallcnt++;
+        if(HallDirCcw[RT_hallPhase] == LS_hallPhase)
+        {
+            RT_hallDir = CCW;
+        }
+        else
+            RT_hallDir = CW;
+        LS_hallPhase = RT_hallPhase; /** 记录这一个的霍尔值 */
+//        update_motor_speed(step, __HAL_TIM_GET_COMPARE(htim,TIM_CHANNEL_1));
+//        bldcm_data.timeout = 0;
     }
+}
+
+/**
+  * 函数功能: 读取电机转速
+  * 输入参数: 无
+  * 返 回 值: 霍尔信号的频率
+  * 说    明: 读取两次调用该函数之间的霍尔信号计数间隔和霍尔信号的个数,计算频率
+  */
+float HALL_GetSpeed_Hz()
+{
+    float tmp_Hz = 0;
+    if((RT_hallcnt == 0) | (RT_hallcomp == 0)) /** 避免除数为0 */
+    {
+        return 0; /** 如果出现这种情况,说明转速过低,两次采样间隔都没有触发霍尔信号 */
+    }
+    else
+    {
+        /** 两次读速度之间的hall接口定时器的捕获值 除以 两次读速度之间的霍尔中断捕获次数 */
+        tmp_Hz = (float)RT_hallcomp / (float)RT_hallcnt; /** 两次捕获之间的捕获值 */
+        RT_hallcnt = 0;
+        RT_hallcomp = 0;
+    }
+    return ((float)HALL_TIM_FREQ/tmp_Hz); /** hall接口定时器的时钟频率除以捕获值,得到频率 */
 }
 
 /**
@@ -493,7 +532,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         if (sin3TableIndex >= 2 * SamplePoint)
             sin3TableIndex = 0;
     } else if(htim == (&TIM_TimeBaseStructure)){
-        int32_t speed = (int32_t)get_motor_speed();
+        int32_t speed = (int32_t)((HALL_GetSpeed_Hz()/PPR)*60);
         set_computer_Speed_Location_value(Send_Speed_CMD, speed);
     }
     else if(htim == (&motor_htimx_hall))

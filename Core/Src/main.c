@@ -75,6 +75,8 @@ int32_t  SamplePoint = sizeof(SinTable)/sizeof(SinTable[0]); /** 标准正弦波
 
 float freq = 5;    /** 初始频率 */
 
+float speed = 0;   /** 初始的速度 */
+
 /**
   * @brief  The application entry point.
   * @retval int
@@ -134,7 +136,7 @@ static void AppTaskCreate(void)
                            (const char*    ) "KEY_Task" ,/** 任务名字*/
                            (uint16_t       ) 512        ,/** 任务栈大小*/
                            (void*          ) NULL       ,/** 任务入口函数参数*/
-                           (UBaseType_t    ) 3          ,/** 任务的优先级*/
+                           (UBaseType_t    ) 5          ,/** 任务的优先级*/
                            (TaskHandle_t*  ) &KEY_Task_Handle);   /** 任务控制块指针*/
     if(pdPASS == xReturn)
     {
@@ -147,7 +149,7 @@ static void AppTaskCreate(void)
                           (const char*    ) "PROTOCOL_Task" , /** 任务名字*/
                           (uint16_t       ) 1024             , /** 任务栈大小*/
                           (void*          ) NULL            , /** 任务入口函数参数*/
-                          (UBaseType_t    ) 2               , /** 任务的优先级*/
+                          (UBaseType_t    ) 3               , /** 任务的优先级*/
                           (TaskHandle_t*  ) &PROTOCOL_Task_Handle);
     if(pdPASS == xReturn)
     {
@@ -157,7 +159,6 @@ static void AppTaskCreate(void)
     }
 
     vTaskDelete(AppTaskCreate_Handle);
-
     taskEXIT_CRITICAL();
 }
 
@@ -173,10 +174,9 @@ static void LED_Task(void* parameter)
     while (1)
     {
         LED1_ON
-        vTaskDelay(500);   /* 延时500个tick */
-
-        LED1_OFF;
-        vTaskDelay(500);   /* 延时500个tick */
+        vTaskDelay(500);   /** 延时500个tick */
+        LED1_OFF
+        vTaskDelay(500);   /** 延时500个tick */
     }
 }
 
@@ -200,7 +200,7 @@ static void KEY_Task(void* parameter)
         {/** K1 被按下 */
             if(!motor1_en_flag)
             {
-                LED4_ON;
+                LED4_ON
                 set_Freq = set_bldcm_speed(1800);
                 hall_motor_enable();
                 set_bldcm_enable();
@@ -210,7 +210,7 @@ static void KEY_Task(void* parameter)
                     config_Sinusoidal( freq += Accel );
                 }
             } else{
-                LED4_OFF;
+                LED4_OFF
                 hall_motor_disable();
                 set_bldcm_disable();
             }
@@ -223,17 +223,17 @@ static void KEY_Task(void* parameter)
         }
         if( Key_Scan(KEY3_GPIO_PORT,KEY3_PIN) == KEY_ON )
         {/** K3 被按下 */
-
+            LED4_ON
+            hall_motor_enable();
         }
         if( Key_Scan(KEY4_GPIO_PORT,KEY4_PIN) == KEY_ON )
         {/** K4 被按下 */
-
         }
         if( Key_Scan(KEY5_GPIO_PORT,KEY5_PIN) == KEY_ON )
         {/** K5 被按下 */
 
         }
-        vTaskDelay(20);/** 延时20个tick */
+        vTaskDelay(500);/** 延时20个tick */
     }
 }
 
@@ -251,6 +251,7 @@ static void PROTOCOL_Task(void* pvParameters)
         vTaskDelay(500);
     }
 }
+
 
 /***********************************************************************
   * @ 函数名  ： BSP_Init
@@ -361,10 +362,6 @@ void SystemClock_Config(void)
         __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
     }
 
-    HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
-    HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
-
-    HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
 
 /**

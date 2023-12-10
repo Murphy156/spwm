@@ -50,7 +50,6 @@ static TaskHandle_t KEY_Task_Handle = NULL;
 static TaskHandle_t LED_Task_Handle = NULL;
 
 
-
 void Error_Handler(void);
 
 

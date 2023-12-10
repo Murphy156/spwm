@@ -68,12 +68,19 @@ extern TIM_HandleTypeDef                 motor_htimx_hall;
 
 /** 累计 TIM_Period个后产生一个更新或者中断
 	当定时器从0计数到4999，即为5000次，为一个定时周期 */
-#define MOTOR_HALL_PERIOD_COUNT          (0xFFFF)
+#define MOTOR_HALL_PERIOD_COUNT          (0xFFFF) /** 65535 */
 
 /** 高级控制定时器时钟源TIMxCLK = HCLK / 2 = 84MHz
-	 设定定时器频率为 = TIMxCLK / (PWM_PRESCALER_COUNT + 1) / PWM_PERIOD_COUNT = 10.01Hz
-   周期 T = 100ms */
-#define MOTOR_HALL_PRESCALER_COUNT       (128)
+	 设定定时器频率为 = TIMxCLK / (PWM_PRESCALER_COUNT)  = 1MHz*/
+#define MOTOR_HALL_PRESCALER_COUNT       (84)
+
+/** 无刷电机4对极 */
+#define POLE_PAIRES                      2
+/** (2*2*3) 脉冲每转 */
+#define PPR                              (POLE_PAIRES*2*3)
+
+/** 定时器计数频率 */
+#define HALL_TIM_FREQ                    (84e6/MOTOR_HALL_PRESCALER_COUNT)
 
 /** TIM3 通道 1 引脚 */
 #define MOTOR_HALL_INPUTU_PIN           		    GPIO_PIN_6

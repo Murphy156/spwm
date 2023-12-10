@@ -51,7 +51,7 @@ void USART_Config(void)
     /** 配置串口接收中断 */
     __HAL_UART_ENABLE_IT(&UartHandle,UART_IT_RXNE);
 
-    HAL_NVIC_SetPriority(USART_IRQ, 0, 2);
+    HAL_NVIC_SetPriority(USART_IRQ, 1, 1);
     HAL_NVIC_EnableIRQ(USART_IRQ);
 }
 
@@ -293,7 +293,7 @@ int8_t receiving_process(void)
             {
                 case SetPIDValue_CMD:
                 {
-                    LED1_ON;
+                    LED1_ON
                     tmp_para = mergeParametersToUint64();
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */
                     rd_p = (rd_p+3) % max_length;
@@ -310,7 +310,7 @@ int8_t receiving_process(void)
                     set_bldcm_enable();
                     while ((freq < set_Freq))
                     {
-                        HAL_Delay(10);
+//                        HAL_Delay(10);
                         config_Sinusoidal( freq += Accel );
                     }
                     /** 处理完一帧数据后将rd_p移到下一个数据帧开头 */

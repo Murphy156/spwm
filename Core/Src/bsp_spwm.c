@@ -100,16 +100,3 @@ uint16_t map(uint16_t sinx, uint16_t out_max)
 {
     return sinx * out_max/SIN_AMPMAX;
 }
-
-
-void HAL_SYSTICK_Callback()
-{
-    static uint32_t i = 0;
-    i++;
-    if( i>=10000 )
-    {
-        i = 0;
-//    Accel = -Accel;
-       Accel = 0;
-    }
-}
