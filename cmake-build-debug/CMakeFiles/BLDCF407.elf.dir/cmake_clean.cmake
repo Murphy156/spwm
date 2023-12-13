@@ -18,6 +18,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_tim.c.obj.d"
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_spwm.c.obj"
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_spwm.c.obj.d"
+  "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_svpwm.c.obj"
+  "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_svpwm.c.obj.d"
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_usart.c.obj"
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_usart.c.obj.d"
   "CMakeFiles/BLDCF407.elf.dir/Core/Src/freertos.c.obj"

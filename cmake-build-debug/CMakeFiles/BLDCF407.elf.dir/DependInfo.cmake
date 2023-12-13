@@ -44,6 +44,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_motor_control.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_control.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_control.c.obj.d"
   "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_motor_tim.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_tim.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_motor_tim.c.obj.d"
   "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_spwm.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_spwm.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_spwm.c.obj.d"
+  "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_svpwm.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_svpwm.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_svpwm.c.obj.d"
   "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_usart.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_usart.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_usart.c.obj.d"
   "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/freertos.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/freertos.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/freertos.c.obj.d"
   "C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/gpio.c" "CMakeFiles/BLDCF407.elf.dir/Core/Src/gpio.c.obj" "gcc" "CMakeFiles/BLDCF407.elf.dir/Core/Src/gpio.c.obj.d"

@@ -19,6 +19,7 @@
 #include "bsp_spwm.h"
 #include "bsp_motor_control.h"
 #include "bsp_basic_tim.h"
+#include "bsp_svpwm.h"
 
 /** FreeRTOS头文件 */
 #include "FreeRTOS.h"

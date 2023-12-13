@@ -135,6 +135,9 @@
 		<Unit filename="C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_spwm.h">
 			<Option target="BLDCF407.elf"/>
 		</Unit>
+		<Unit filename="C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_svpwm.h">
+			<Option target="BLDCF407.elf"/>
+		</Unit>
 		<Unit filename="C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_usart.h">
 			<Option target="BLDCF407.elf"/>
 		</Unit>
@@ -175,6 +178,9 @@
 			<Option target="BLDCF407.elf"/>
 		</Unit>
 		<Unit filename="C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_spwm.c">
+			<Option target="BLDCF407.elf"/>
+		</Unit>
+		<Unit filename="C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_svpwm.c">
 			<Option target="BLDCF407.elf"/>
 		</Unit>
 		<Unit filename="C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_usart.c">

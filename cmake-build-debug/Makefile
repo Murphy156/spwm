@@ -320,6 +320,30 @@ Core/Src/bsp_spwm.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_spwm.c.s
 .PHONY : Core/Src/bsp_spwm.c.s
 
+Core/Src/bsp_svpwm.obj: Core/Src/bsp_svpwm.c.obj
+.PHONY : Core/Src/bsp_svpwm.obj
+
+# target to build an object file
+Core/Src/bsp_svpwm.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_svpwm.c.obj
+.PHONY : Core/Src/bsp_svpwm.c.obj
+
+Core/Src/bsp_svpwm.i: Core/Src/bsp_svpwm.c.i
+.PHONY : Core/Src/bsp_svpwm.i
+
+# target to preprocess a source file
+Core/Src/bsp_svpwm.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_svpwm.c.i
+.PHONY : Core/Src/bsp_svpwm.c.i
+
+Core/Src/bsp_svpwm.s: Core/Src/bsp_svpwm.c.s
+.PHONY : Core/Src/bsp_svpwm.s
+
+# target to generate assembly for a file
+Core/Src/bsp_svpwm.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BLDCF407.elf.dir\build.make CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_svpwm.c.s
+.PHONY : Core/Src/bsp_svpwm.c.s
+
 Core/Src/bsp_usart.obj: Core/Src/bsp_usart.c.obj
 .PHONY : Core/Src/bsp_usart.obj
 
@@ -1369,6 +1393,9 @@ help:
 	@echo ... Core/Src/bsp_spwm.obj
 	@echo ... Core/Src/bsp_spwm.i
 	@echo ... Core/Src/bsp_spwm.s
+	@echo ... Core/Src/bsp_svpwm.obj
+	@echo ... Core/Src/bsp_svpwm.i
+	@echo ... Core/Src/bsp_svpwm.s
 	@echo ... Core/Src/bsp_usart.obj
 	@echo ... Core/Src/bsp_usart.i
 	@echo ... Core/Src/bsp_usart.s
