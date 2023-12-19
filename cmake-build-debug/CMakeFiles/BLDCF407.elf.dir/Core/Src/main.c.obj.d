@@ -85,8 +85,8 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/main.c.obj: \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/event_groups.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Middlewares\Third_Party\FreeRTOS\Source\include/timers.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/adc.h \
- C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/main.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/spi.h \
+ C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/main.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/gpio.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/bsp_DRV8303.h \
  C:\Users\aoc11\Desktop\STM32_BLDC_SPWM_research\Core\Inc/spi.h \

@@ -59,14 +59,14 @@
 typedef struct
 {
   uint32_t ClockPrescaler;               /*!< Select ADC clock prescaler. The clock is common for 
-                                              all the ADCs.
+                                              all the ADCs.选择 ADC 时钟预分频器。这个时钟是所有 ADC 共用的。用于设置 ADC 的工作时钟频率。
                                               This parameter can be a value of @ref ADC_ClockPrescaler */
-  uint32_t Resolution;                   /*!< Configures the ADC resolution.
+  uint32_t Resolution;                   /*!< Configures the ADC resolution.配置 ADC 的分辨率。这决定了 ADC 转换的精度，例如 12 位或 10 位。
                                               This parameter can be a value of @ref ADC_Resolution */
   uint32_t DataAlign;                    /*!< Specifies ADC data alignment to right (MSB on register bit 11 and LSB on register bit 0) (default setting)
                                               or to left (if regular group: MSB on register bit 15 and LSB on register bit 4, if injected group (MSB kept as signed value due to potential negative value after offset application): MSB on register bit 14 and LSB on register bit 3).
-                                              This parameter can be a value of @ref ADC_Data_align */
-  uint32_t ScanConvMode;                 /*!< Configures the sequencer of regular and injected groups.
+                                              This parameter can be a value of @ref ADC_Data_align 指定 ADC 数据的对齐方式。可以是右对齐（最高有效位在寄存器的高位）或左对齐（最高有效位在寄存器的更高位）。*/
+  uint32_t ScanConvMode;                 /*!< Configures the sequencer of regular and injected groups.配置规则组和注入组的顺序器。如果启用，转换将按顺序模式进行（多个通道）。如果禁用，转换将在单模式下进行（只转换一个通道）
                                               This parameter can be associated to parameter 'DiscontinuousConvMode' to have main sequence subdivided in successive parts.
                                               If disabled: Conversion is performed in single mode (one channel converted, the one defined in rank 1).
                                                            Parameters 'NbrOfConversion' and 'InjectedNbrOfConversion' are discarded (equivalent to set to 1).
@@ -74,37 +74,37 @@ typedef struct
                                                            Scan direction is upward: from rank1 to rank 'n'.
                                               This parameter can be set to ENABLE or DISABLE */
   uint32_t EOCSelection;                 /*!< Specifies what EOC (End Of Conversion) flag is used for conversion by polling and interruption: end of conversion of each rank or complete sequence.
-                                              This parameter can be a value of @ref ADC_EOCSelection.
+                                              This parameter can be a value of @ref ADC_EOCSelection.指定用于轮询和中断的 EOC（转换结束）标志是每个排名的结束还是整个序列的结束。
                                               Note: For injected group, end of conversion (flag&IT) is raised only at the end of the sequence.
                                                     Therefore, if end of conversion is set to end of each conversion, injected group should not be used with interruption (HAL_ADCEx_InjectedStart_IT)
                                                     or polling (HAL_ADCEx_InjectedStart and HAL_ADCEx_InjectedPollForConversion). By the way, polling is still possible since driver will use an estimated timing for end of injected conversion.
                                               Note: If overrun feature is intended to be used, use ADC in mode 'interruption' (function HAL_ADC_Start_IT() ) with parameter EOCSelection set to end of each conversion or in mode 'transfer by DMA' (function HAL_ADC_Start_DMA()).
                                                     If overrun feature is intended to be bypassed, use ADC in mode 'polling' or 'interruption' with parameter EOCSelection must be set to end of sequence */
   FunctionalState ContinuousConvMode;    /*!< Specifies whether the conversion is performed in single mode (one conversion) or continuous mode for regular group,
-                                              after the selected trigger occurred (software start or external trigger).
+                                              after the selected trigger occurred (software start or external trigger).指定在选定触发发生后（软件启动或外部触发），规则组的转换是以单次模式（一次转换）还是连续模式进行。
                                               This parameter can be set to ENABLE or DISABLE. */
-  uint32_t NbrOfConversion;              /*!< Specifies the number of ranks that will be converted within the regular group sequencer.
+  uint32_t NbrOfConversion;              /*!< Specifies the number of ranks that will be converted within the regular group sequencer.指定将在规则组顺序器中转换的排名数量。要使用规则组顺序器并转换多个排名，必须启用 ScanConvMode。
                                               To use regular group sequencer and convert several ranks, parameter 'ScanConvMode' must be enabled.
                                               This parameter must be a number between Min_Data = 1 and Max_Data = 16. */
   FunctionalState DiscontinuousConvMode; /*!< Specifies whether the conversions sequence of regular group is performed in Complete-sequence/Discontinuous-sequence (main sequence subdivided in successive parts).
                                               Discontinuous mode is used only if sequencer is enabled (parameter 'ScanConvMode'). If sequencer is disabled, this parameter is discarded.
                                               Discontinuous mode can be enabled only if continuous mode is disabled. If continuous mode is enabled, this parameter setting is discarded.
-                                              This parameter can be set to ENABLE or DISABLE. */
+                                              This parameter can be set to ENABLE or DISABLE. 指定规则组的转换序列是以完整序列模式还是不连续序列模式（主序列分为连续部分）进行。只有在启用顺序器时才使用不连续模式。*/
   uint32_t NbrOfDiscConversion;          /*!< Specifies the number of discontinuous conversions in which the  main sequence of regular group (parameter NbrOfConversion) will be subdivided.
                                               If parameter 'DiscontinuousConvMode' is disabled, this parameter is discarded.
-                                              This parameter must be a number between Min_Data = 1 and Max_Data = 8. */
+                                              This parameter must be a number between Min_Data = 1 and Max_Data = 8. 指定将规则组的主序列（NbrOfConversion 参数）划分为多少个不连续转换。如果禁用了 DiscontinuousConvMode，则忽略此参数。*/
   uint32_t ExternalTrigConv;             /*!< Selects the external event used to trigger the conversion start of regular group.
-                                              If set to ADC_SOFTWARE_START, external triggers are disabled.
+                                              If set to ADC_SOFTWARE_START, external triggers are disabled.选择用于触发规则组转换开始的外部事件。如果设置为软件启动，则禁用外部触发。
                                               If set to external trigger source, triggering is on event rising edge by default.
                                               This parameter can be a value of @ref ADC_External_trigger_Source_Regular */
   uint32_t ExternalTrigConvEdge;         /*!< Selects the external trigger edge of regular group.
-                                              If trigger is set to ADC_SOFTWARE_START, this parameter is discarded.
+                                              If trigger is set to ADC_SOFTWARE_START, this parameter is discarded.选择规则组的外部触发边缘。如果触发设置为软件启动，则忽略此参数
                                               This parameter can be a value of @ref ADC_External_trigger_edge_Regular */
   FunctionalState DMAContinuousRequests; /*!< Specifies whether the DMA requests are performed in one shot mode (DMA transfer stop when number of conversions is reached)
 											  or in Continuous mode (DMA transfer unlimited, whatever number of conversions).
 											  Note: In continuous mode, DMA must be configured in circular mode. Otherwise an overrun will be triggered when DMA buffer maximum pointer is reached.
 											  Note: This parameter must be modified when no conversion is on going on both regular and injected groups (ADC disabled, or ADC enabled without continuous mode or external trigger that could launch a conversion).
-											  This parameter can be set to ENABLE or DISABLE. */
+											  This parameter can be set to ENABLE or DISABLE. 指定 DMA 请求是在一次模式下执行（当达到转换数量时，DMA 传输停止）还是在连续模式下执行（无论转换数量如何，DMA 传输都不限制）。*/
 }ADC_InitTypeDef;
 
 

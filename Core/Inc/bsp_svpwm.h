@@ -5,7 +5,13 @@
 #include "main.h"
 #include "bsp_motor_tim.h"
 
-/**定点数据Q=15,0~32766对应浮点数据0~0.99996948 */
+/**定点数据Q=15,0~32767对应浮点数据0~0.99996948
+ * 在Q15格式中，最大的正值是 32767（二进制为 0111 1111 1111 1111）。
+    这个值几乎表示 1，但实际上是略小于 1 的最大值。
+    例如，要将表中的一个值 16384（大约是中间值）映射到浮点数，我们使用比例 0.99996948 / 32766。
+    计算为：16384 * (0.99996948 / 32766) ≈ 0.5。
+    这意味着 16384 在Q15格式中大约表示 0.5，这是符合预期的，因为 16384 是 32768 的一半，而在Q15格式中，32768 表示 1。
+ * */
 #define  SIN_COS_TABLE {\
 0x0000,0x00C9,0x0192,0x025B,0x0324,0x03ED,0x04B6,0x057F,\
 0x0648,0x0711,0x07D9,0x08A2,0x096A,0x0A33,0x0AFB,0x0BC4,\
@@ -38,7 +44,7 @@
 0x7D89,0x7DB0,0x7DD5,0x7DFA,0x7E1D,0x7E3E,0x7E5F,0x7E7E,\
 0x7E9C,0x7EB9,0x7ED5,0x7EEF,0x7F09,0x7F21,0x7F37,0x7F4D,\
 0x7F61,0x7F74,0x7F86,0x7F97,0x7FA6,0x7FB4,0x7FC1,0x7FCD,\
-0x7FD8,0x7FE1,0x7FE9,0x7FF0,0x7FF5,0x7FF9,0x7FFD,0x7FFE} /** 0~90°曲线 */
+0x7FD8,0x7FE1,0x7FE9,0x7FF0,0x7FF5,0x7FF9,0x7FFD,0x7FFE}     /** 0~90°曲线 */
 
 
 /**SVPWM输入的两相电压（电流） */
@@ -63,16 +69,17 @@ typedef struct
     uint16_t CCR3;
 } PWM_Duty_CCR_Typedef;
 
-#define SQRT3FACTOR                   (uint16_t)0xDDB4    /** (16384 * 1.732051 * 2) sqrt(3) = 1.732051  定点Q15格式*/
-#define T_SQRT3                       (int32_t )((PWM_PERIOD_CYCLES * SQRT3FACTOR)/22938u)       /** T*Sqrt(3) */
+#define SQRT3FACTOR                   (uint16_t)0xDDB4                                               /** (16384 * 1.732051 * 2) sqrt(3) = 1.732051  定点Q15格式*/
+#define T_SQRT3                       (int32_t )((PWM_PERIOD_CYCLES * SQRT3FACTOR)/22938u)           /** T*Sqrt(3) */
 
-#define POLE_PAIRS                     2                                                       /** 极对数*/
-#define UREF                           (int16_t) (22938)                                       /** Uref矢量模长，决定电流（扭矩）*/
-#define ROTOR_FREQ                     26                                                      /** 转子频率 Hz  决定转速，15*60 = 900RPM*/
-#define FREQ_RATIO                     ((float)(ROTOR_FREQ*POLE_PAIRS)/(float)PWM_FREQUENCY)   /** 频率比=（转子频率*极对数）/载波频率*/
+#define POLE_PAIRS                     2                                                             /** 极对数*/
+#define UREF                           (int16_t) (22938)                                             /** Uref矢量模长，决定电流（扭矩）*/
+#define ROTOR_FREQ                     26                                                            /** 转子频率 Hz  决定转速，26 * 60 = 2340RPM */
+#define FREQ_RATIO                     ((float)(ROTOR_FREQ * POLE_PAIRS)/(float)PWM_FREQUENCY)       /** 频率比=（转子频率*极对数）电频率/载波频率 */
 
 uint16_t PWMC_SetPhaseVoltage( Volt_Typedef Valfa_beta );
 Volt_Typedef Get_V_alpha_Beta(int16_t Omega);
+void SVPWM_Mode(void);
 
 
 #endif //CPROJECT_BSP_SVPWM_H

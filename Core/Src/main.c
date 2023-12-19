@@ -5,7 +5,7 @@
   * question: 如果cmake不见了，在file->setting->cmake 中的右上角reload一下即可
   ******************************************************************************
   */
-/** Includes ------------------------------------------------------------------*/
+/**----------------------------- Includes -------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
 #include "adc.h"
@@ -128,9 +128,6 @@ static void AppTaskCreate(void)
                           (UBaseType_t   )  4         ,/** 任务的优先级 */
                           (TaskHandle_t* )  &LED_Task_Handle);/** 任务控制块指针*/
     if(pdPASS == xReturn){
-        LED3_ON
-        vTaskDelay(10);
-        LED3_OFF
     }
     /** 创建KEY_Task任务 */
     xReturn =  xTaskCreate((TaskFunction_t ) KEY_Task   ,/** 任务入口函数 */
@@ -141,9 +138,6 @@ static void AppTaskCreate(void)
                            (TaskHandle_t*  ) &KEY_Task_Handle);   /** 任务控制块指针*/
     if(pdPASS == xReturn)
     {
-        LED3_ON
-        vTaskDelay(10);
-        LED3_OFF
     }
     /** 创建PROTOCOL_Task任务 */
     xReturn = xTaskCreate((TaskFunction_t ) PROTOCOL_Task   , /** 任务入口函数 */
@@ -154,9 +148,6 @@ static void AppTaskCreate(void)
                           (TaskHandle_t*  ) &PROTOCOL_Task_Handle);
     if(pdPASS == xReturn)
     {
-        LED3_ON
-        vTaskDelay(10);
-        LED3_OFF
     }
 
     vTaskDelete(AppTaskCreate_Handle);
@@ -216,7 +207,6 @@ static void KEY_Task(void* parameter)
                 set_bldcm_disable();
             }
             motor1_en_flag = !motor1_en_flag;
-
         }
         if( Key_Scan(KEY2_GPIO_PORT,KEY2_PIN) == KEY_ON )
         {/** K2 被按下 */
@@ -290,6 +280,9 @@ static void BSP_Init(void)
 
     /** 基本定时器初始化 */
     Basic_TIMx_Configuration();
+
+    /** ADC初始化 */
+    ADC_Init();
 
     HAL_TIM_Base_Start_IT(&motor1_htimx_bldcm);
 

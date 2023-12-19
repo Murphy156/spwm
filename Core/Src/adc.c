@@ -1,158 +1,106 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file    adc.c
-  * @brief   This file provides code for the configuration
-  *          of the ADC instances.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
 #include "adc.h"
+#include <math.h>
+#include "bsp_led.h"
+#include "bsp_svpwm.h"
 
-/* USER CODE BEGIN 0 */
+ADC_HandleTypeDef hadc1;
 
-/* USER CODE END 0 */
-
-ADC_HandleTypeDef hadc3;
-
-/* ADC3 init function */
-void MX_ADC3_Init(void)
-{
-
-  /* USER CODE BEGIN ADC3_Init 0 */
-
-  /* USER CODE END ADC3_Init 0 */
-
-  ADC_ChannelConfTypeDef sConfig = {0};
-
-  /* USER CODE BEGIN ADC3_Init 1 */
-
-  /* USER CODE END ADC3_Init 1 */
-
-  /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
+/**
+  * @brief  ADC 通道引脚初始化
+  * @param  无
+  * @retval 无
   */
-  hadc3.Instance = ADC3;
-  hadc3.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
-  hadc3.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc3.Init.ScanConvMode = DISABLE;
-  hadc3.Init.ContinuousConvMode = DISABLE;
-  hadc3.Init.DiscontinuousConvMode = DISABLE;
-  hadc3.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc3.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-  hadc3.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc3.Init.NbrOfConversion = 1;
-  hadc3.Init.DMAContinuousRequests = DISABLE;
-  hadc3.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-  if (HAL_ADC_Init(&hadc3) != HAL_OK)
-  {
-    Error_Handler();
-  }
+static void ADC_GPIO_Config(void)
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    /** 使能 GPIO 时钟 */
+    Iab_ADC_GPIO_CLK_ENABLE();
+    /** 配置 IO */
+    GPIO_InitStructure.Pin = Ia1_ADC_GPIO_PIN;
+    GPIO_InitStructure.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStructure.Pull = GPIO_NOPULL ; /** 不上拉不下拉 */
+    HAL_GPIO_Init(Ia1_ADC_GPIO_PORT, &GPIO_InitStructure);
 
-  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
+    GPIO_InitStructure.Pin = Ib1_ADC_GPIO_PIN;
+    HAL_GPIO_Init(Ib1_ADC_GPIO_PORT, &GPIO_InitStructure);
+
+    GPIO_InitStructure.Pin = Ia2_ADC_GPIO_PIN;
+    HAL_GPIO_Init(Ia2_ADC_GPIO_PORT, &GPIO_InitStructure);
+
+    GPIO_InitStructure.Pin = Ib2_ADC_GPIO_PIN;
+    HAL_GPIO_Init(Ib2_ADC_GPIO_PORT, &GPIO_InitStructure);
+}
+
+/**
+  * @brief  ADC模式初始化
+  * @param  无
+  * @retval 无
   */
-  sConfig.Channel = ADC_CHANNEL_10;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN ADC3_Init 2 */
-
-  /* USER CODE END ADC3_Init 2 */
-
-}
-
-void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
+static void ADC_Mode_Config(void)
 {
+    I_ADC_CLK_ENABLE();
 
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  if(adcHandle->Instance==ADC3)
-  {
-  /* USER CODE BEGIN ADC3_MspInit 0 */
+    ADC_InjectionConfTypeDef sConfigInjected;
 
-  /* USER CODE END ADC3_MspInit 0 */
-    /* ADC3 clock enable */
-    __HAL_RCC_ADC3_CLK_ENABLE();
-
-    __HAL_RCC_GPIOF_CLK_ENABLE();
-    __HAL_RCC_GPIOC_CLK_ENABLE();
-    /**ADC3 GPIO Configuration
-    PF3     ------> ADC3_IN9
-    PF4     ------> ADC3_IN14
-    PF5     ------> ADC3_IN15
-    PF6     ------> ADC3_IN4
-    PF7     ------> ADC3_IN5
-    PF8     ------> ADC3_IN6
-    PF9     ------> ADC3_IN7
-    PF10     ------> ADC3_IN8
-    PC0     ------> ADC3_IN10
-    PC1     ------> ADC3_IN11
-    PC2     ------> ADC3_IN12
+    /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
+       配置ADC的全局特性,包括时钟,分辨率,数据对齐方向,转换通道数量
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6
-                          |GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10;
-    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+    hadc1.Instance                  = I_ADC;
+    hadc1.Init.ClockPrescaler       = ADC_CLOCK_SYNC_PCLK_DIV4;     /** 时钟=84/4 = 21MHz */
+    hadc1.Init.Resolution           = ADC_RESOLUTION_12B;           /** 12位分辨率(转换时间15个时钟周期)  ADC 可以将输入信号转换为 4096（2^12）个不同的数字值。*/
+    hadc1.Init.ScanConvMode         = ENABLE;                       /** 扫描模式 当启用时，ADC 会按照设定的顺序连续扫描多个通道。*/
+    hadc1.Init.ContinuousConvMode   = DISABLE;                      /** 连续采样 续转换模式禁用。这意味着 ADC 不会自动重复采样，而是每次需要时进行单次采样。*/
+    hadc1.Init.DiscontinuousConvMode= DISABLE;                      /** 不连续采样 不连续转换模式禁用。在不连续模式下，ADC 可以在一组预定的通道之间进行采样，而不是连续采样所有通道。*/
+    hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;/** 无外部触发 这表示没有外部触发用于开始转换。转换将通过软件命令启动。*/
+    hadc1.Init.ExternalTrigConv     = ADC_SOFTWARE_START;           /** 软件启动 这个设置指定了转换的启动方式。ADC_SOFTWARE_START 表示转换将通过软件命令启动，而不是外部硬件信号。*/
+    hadc1.Init.DataAlign            = ADC_DATAALIGN_LEFT;           /** 左对齐 数据对齐方式为左对齐。这决定了 ADC 转换结果在寄存器中的对齐方式。*/
+    hadc1.Init.NbrOfConversion      = 2;                            /** 转换通道 2 这指定了在扫描模式下要转换的通道数量。这里设置为 2，意味着有两个通道将被连续扫描。 */
+    hadc1.Init.DMAContinuousRequests= DISABLE;                      /** DMA传输请求 这意味着 DMA（直接内存访问）不会在每次 ADC 转换完成后自动传输数据。*/
+    hadc1.Init.EOCSelection         = ADC_EOC_SINGLE_CONV;          /** 单次转换完成标记 这个设置指定了何时标记转换结束（EOC，End Of Conversion）。ADC_EOC_SINGLE_CONV 表示每次单个通道的转换完成后都会标记 EOC。*/
+    HAL_ADC_Init(&hadc1);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2;
-    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+    /** 配置注入通道的采样顺序和采样时间 */
+    sConfigInjected.InjectedChannel               = Ia1_ADC_CHANNEL;                        /** CH9 */
+    sConfigInjected.InjectedRank                  = 1;                                      /** 采样顺序 */
+    sConfigInjected.InjectedNbrOfConversion       = 2;                                      /** 总的转换通道数量 */
+    sConfigInjected.InjectedSamplingTime          = ADC_SAMPLETIME_3CYCLES;                 /** 采样时间,3个周期,单次转换时间是15个周期 */
+    sConfigInjected.ExternalTrigInjecConvEdge     = ADC_EXTERNALTRIGINJECCONVEDGE_RISING;   /** 外部信号上升沿触发(指ADC的外部) */
+    sConfigInjected.ExternalTrigInjecConv         = ADC_EXTERNALTRIGINJECCONV_T1_CC4;       /** 触发源:TIM1 CH4的比较事件 */
+    sConfigInjected.AutoInjectedConv              = DISABLE;                                /** 自动注入 */
+    sConfigInjected.InjectedDiscontinuousConvMode = ENABLE;                                 /** 不连续采样 */
+    sConfigInjected.InjectedOffset                = 0;                                      /** 数据偏移值 */
+    HAL_ADCEx_InjectedConfigChannel(&hadc1, &sConfigInjected);
 
-  /* USER CODE BEGIN ADC3_MspInit 1 */
+    sConfigInjected.InjectedChannel               = Ib1_ADC_CHANNEL;                        /** CH14 */
+    sConfigInjected.InjectedRank                  = 2;
+    HAL_ADCEx_InjectedConfigChannel(&hadc1, &sConfigInjected);
 
-  /* USER CODE END ADC3_MspInit 1 */
-  }
+    /** ADC_IRQn interrupt configuration */
+    HAL_NVIC_SetPriority(MOTOR_ADC_IRQn , 2, 0);
+    HAL_NVIC_EnableIRQ(MOTOR_ADC_IRQn );
+
+    HAL_ADCEx_InjectedStart(&hadc1);
 }
 
-void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
+void ADC_Init(void)
 {
-
-  if(adcHandle->Instance==ADC3)
-  {
-  /* USER CODE BEGIN ADC3_MspDeInit 0 */
-
-  /* USER CODE END ADC3_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_ADC3_CLK_DISABLE();
-
-    /**ADC3 GPIO Configuration
-    PF3     ------> ADC3_IN9
-    PF4     ------> ADC3_IN14
-    PF5     ------> ADC3_IN15
-    PF6     ------> ADC3_IN4
-    PF7     ------> ADC3_IN5
-    PF8     ------> ADC3_IN6
-    PF9     ------> ADC3_IN7
-    PF10     ------> ADC3_IN8
-    PC0     ------> ADC3_IN10
-    PC1     ------> ADC3_IN11
-    PC2     ------> ADC3_IN12
-    */
-    HAL_GPIO_DeInit(GPIOF, GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6
-                          |GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10);
-
-    HAL_GPIO_DeInit(GPIOC, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2);
-
-  /* USER CODE BEGIN ADC3_MspDeInit 1 */
-
-  /* USER CODE END ADC3_MspDeInit 1 */
-  }
+    ADC_GPIO_Config();
+    ADC_Mode_Config();
 }
 
-/* USER CODE BEGIN 1 */
 
-/* USER CODE END 1 */
+int32_t	ia1_buff[1000];
+int32_t	ib1_buff[1000];
+int i = 0;
+
+void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+    if( hadc->Instance == I_ADC)
+    {
+        SVPWM_Mode();
+    }
+}
+
+
+
+

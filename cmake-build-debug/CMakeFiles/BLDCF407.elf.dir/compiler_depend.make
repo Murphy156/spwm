@@ -3,11 +3,6 @@
 
 CMakeFiles/BLDCF407.elf.dir/Core/Src/adc.c.obj: C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/adc.c \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/adc.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/main.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/stm32f4xx_hal_conf.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/CMSIS/Include/core_cm4.h \
@@ -23,6 +18,10 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/adc.c.obj: C:/Users/aoc11/Desktop/STM32_BLD
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/CMSIS/Include/cmsis_gcc.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/CMSIS/Include/mpu_armv7.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/stm32f4xx_hal_conf.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h \
@@ -45,21 +44,25 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/adc.c.obj: C:/Users/aoc11/Desktop/STM32_BLD
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_usart.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/FreeRTOSConfig.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_usart.h \
-  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdio.h \
+  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/math.h \
+  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/reent.h \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_ansi.h \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/newlib.h \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/config.h \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/ieeefp.h \
-  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/cdefs.h \
-  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdarg.h \
-  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/reent.h \
-  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_ansi.h \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_types.h \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_types.h \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/lock.h \
+  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/cdefs.h \
+  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_ansi.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_led.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_svpwm.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/main.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/FreeRTOSConfig.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_usart.h \
+  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdio.h \
+  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdarg.h \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/types.h \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/endian.h \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_endian.h \
@@ -78,7 +81,8 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/adc.c.obj: C:/Users/aoc11/Desktop/STM32_BLD
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_motor_tim.h
 
 CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_DRV8303.c.obj: C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_DRV8303.c \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_DRV8303.h \
@@ -685,7 +689,8 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_svpwm.c.obj: C:/Users/aoc11/Desktop/STM
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_motor_tim.h \
-  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/math.h
+  C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/math.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/adc.h
 
 CMakeFiles/BLDCF407.elf.dir/Core/Src/bsp_usart.c.obj: C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_usart.c \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/main.h \
@@ -1023,8 +1028,8 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/main.c.obj: C:/Users/aoc11/Desktop/STM32_BL
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/adc.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/main.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/spi.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/main.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/gpio.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_DRV8303.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/spi.h \
@@ -1278,7 +1283,8 @@ CMakeFiles/BLDCF407.elf.dir/Core/Src/stm32f4xx_it.c.obj: C:/Users/aoc11/Desktop/
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_motor_tim.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/main.h \
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_usart.h \
-  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_basic_tim.h
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_basic_tim.h \
+  C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/adc.h
 
 CMakeFiles/BLDCF407.elf.dir/Core/Src/syscalls.c.obj: C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/syscalls.c \
   C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stat.h \
@@ -3079,39 +3085,27 @@ CMakeFiles/BLDCF407.elf.dir/Middlewares/Third_Party/FreeRTOS/Source/timers.c.obj
   C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 
 
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
-
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/main.h:
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/adc.c:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/freertos.c:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:
 
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/adc.c:
-
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
-
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/adc.h:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h:
 
-C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/reent.h:
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h:
 
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/stm32f4xx_hal_conf.h:
-
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
-
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:
+C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/CMSIS/Include/core_cm4.h:
+
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:
 
 C:/gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h:
 
 C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdint.h:
-
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h:
-
-C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h:
 
@@ -3155,9 +3149,23 @@ C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/CMSIS/Device/ST/STM32F4x
 
 C:/gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h:
 
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
+
+C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/reent.h:
+
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/stm32f4xx_hal_conf.h:
+
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_svpwm.h:
+
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
+
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
+
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h:
+
+C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/math.h:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h:
 
@@ -3193,6 +3201,26 @@ C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_usart.h:
 
+C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/config.h:
+
+C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_sigset.h:
+
+C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/ieeefp.h:
+
+C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_types.h:
+
+C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/lock.h:
+
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_led.h:
+
+C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/types.h:
+
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/queue.c:
+
+C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/cdefs.h:
+
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/main.h:
+
 C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_endian.h:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c:
@@ -3201,31 +3229,13 @@ C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/list.c:
 
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/FreeRTOSConfig.h:
-
 C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/select.h:
+
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/FreeRTOSConfig.h:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_usart.h:
 
-C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/config.h:
-
-C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/ieeefp.h:
-
-C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_sigset.h:
-
-C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/types.h:
-
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/queue.c:
-
-C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/cdefs.h:
-
 C:/gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdarg.h:
-
-C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_types.h:
-
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_led.h:
-
-C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/lock.h:
 
 C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/endian.h:
 
@@ -3255,6 +3265,8 @@ C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 
+C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_motor_tim.h:
+
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_DRV8303.h:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/spi.h:
@@ -3273,8 +3285,6 @@ C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_motor_control.c:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_motor_control.h:
 
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_motor_tim.h:
-
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_spwm.h:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
@@ -3283,11 +3293,7 @@ C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_motor_tim.c:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_spwm.c:
 
-C:/gcc/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/math.h:
-
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_svpwm.c:
-
-C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Inc/bsp_svpwm.h:
 
 C:/Users/aoc11/Desktop/STM32_BLDC_SPWM_research/Core/Src/bsp_usart.c:
 

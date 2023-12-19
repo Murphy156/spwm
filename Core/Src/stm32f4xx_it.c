@@ -30,6 +30,7 @@
 #include "bsp_motor_tim.h"
 #include "bsp_usart.h"
 #include "bsp_basic_tim.h"
+#include "adc.h"
 /** USER CODE END 0 */
 
 /* Private includes ----------------------------------------------------------*/
@@ -223,10 +224,15 @@ void BASIC_TIM_IRQHandler (void)
     HAL_TIM_IRQHandler(&TIM_TimeBaseStructure);
 }
 
-/*void PPP_IRQHandler(void)
-{
-}*/
+
 void MOTOR_HALL_TIM_IRQHandler(void)
 {
     HAL_TIM_IRQHandler(&motor_htimx_hall);
+}
+
+
+extern ADC_HandleTypeDef hadc1;
+void MOTOR_ADC_IRQHandler()
+{
+    HAL_ADC_IRQHandler(&hadc1);
 }

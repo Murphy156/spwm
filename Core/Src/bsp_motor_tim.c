@@ -147,7 +147,7 @@ static void TIM1_Mode_Config(void)
     /** PWM模式配置 */
     /** 配置为PWM模式1 */
     MOTOR1_TIM_OCInitStructure.OCMode = TIM_OCMODE_PWM1;
-    MOTOR1_TIM_OCInitStructure.Pulse = 0;                         /** 默认必须要初始为0 */
+    MOTOR1_TIM_OCInitStructure.Pulse = 0;                                                                             /** 默认必须要初始为0 */
     MOTOR1_TIM_OCInitStructure.OCPolarity = TIM_OCPOLARITY_HIGH;
     MOTOR1_TIM_OCInitStructure.OCNPolarity = TIM_OCNPOLARITY_HIGH;
     MOTOR1_TIM_OCInitStructure.OCIdleState = TIM_OCIDLESTATE_RESET;
@@ -158,7 +158,7 @@ static void TIM1_Mode_Config(void)
     HAL_TIM_PWM_ConfigChannel(&motor1_htimx_bldcm,&MOTOR1_TIM_OCInitStructure,TIM_CHANNEL_3);    /** 初始化通道 3 输出 PWM */
 
     MOTOR1_TIM_OCInitStructure.Pulse = MOTOR1_PWM_PERIOD_COUNT-1;
-    HAL_TIM_PWM_ConfigChannel(&motor1_htimx_bldcm,&MOTOR1_TIM_OCInitStructure,TIM_CHANNEL_4);
+    HAL_TIM_PWM_ConfigChannel(&motor1_htimx_bldcm,&MOTOR1_TIM_OCInitStructure,TIM_CHANNEL_4);    /** 初始化通道 4 输出 PWM */
 
     /** 开启定时器通道1输出PWM */
     HAL_TIM_PWM_Start(&motor1_htimx_bldcm,TIM_CHANNEL_1);
