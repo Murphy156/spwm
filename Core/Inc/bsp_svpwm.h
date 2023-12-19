@@ -59,7 +59,7 @@ typedef struct
 {
     int16_t hCos;
     int16_t hSin;
-} Trig_Components_Typedef;
+}Trig_Components_Typedef;
 
 /** 定时器比较值*/
 typedef struct

@@ -196,11 +196,11 @@ static void KEY_Task(void* parameter)
                 set_Freq = set_bldcm_speed(1800);
                 hall_motor_enable();
                 set_bldcm_enable();
-                while ((freq < set_Freq))
-                {
-                    HAL_Delay(10);
-                    config_Sinusoidal( freq += Accel );
-                }
+//                while ((freq < set_Freq))
+//                {
+//                    HAL_Delay(10);
+//                    config_Sinusoidal( freq += Accel );
+//                }
             } else{
                 LED4_OFF
                 hall_motor_disable();

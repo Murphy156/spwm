@@ -80,6 +80,8 @@ static void ADC_Mode_Config(void)
     HAL_NVIC_EnableIRQ(MOTOR_ADC_IRQn );
 
     HAL_ADCEx_InjectedStart(&hadc1);
+
+    __HAL_ADC_ENABLE_IT(&hadc1,ADC_IT_JEOC);
 }
 
 void ADC_Init(void)
@@ -87,7 +89,6 @@ void ADC_Init(void)
     ADC_GPIO_Config();
     ADC_Mode_Config();
 }
-
 
 int32_t	ia1_buff[1000];
 int32_t	ib1_buff[1000];

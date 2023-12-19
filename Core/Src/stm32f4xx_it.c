@@ -209,7 +209,7 @@ void USART_IRQHandler(void)
 }
 /* USER CODE END 2 */
 
-void MOTOR1_TIM_OC_IRQHANDLER ()
+void MOTOR1_TIM_OC_IRQHANDLER()
 {
     HAL_TIM_IRQHandler(&motor1_htimx_bldcm);
 }
@@ -236,3 +236,5 @@ void MOTOR_ADC_IRQHandler()
 {
     HAL_ADC_IRQHandler(&hadc1);
 }
+
+

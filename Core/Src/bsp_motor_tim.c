@@ -157,7 +157,7 @@ static void TIM1_Mode_Config(void)
     HAL_TIM_PWM_ConfigChannel(&motor1_htimx_bldcm,&MOTOR1_TIM_OCInitStructure,TIM_CHANNEL_2);    /** 初始化通道 2 输出 PWM */
     HAL_TIM_PWM_ConfigChannel(&motor1_htimx_bldcm,&MOTOR1_TIM_OCInitStructure,TIM_CHANNEL_3);    /** 初始化通道 3 输出 PWM */
 
-    MOTOR1_TIM_OCInitStructure.Pulse = MOTOR1_PWM_PERIOD_COUNT-1;
+    MOTOR1_TIM_OCInitStructure.Pulse = MOTOR1_PWM_PERIOD_COUNT-50;
     HAL_TIM_PWM_ConfigChannel(&motor1_htimx_bldcm,&MOTOR1_TIM_OCInitStructure,TIM_CHANNEL_4);    /** 初始化通道 4 输出 PWM */
 
     /** 开启定时器通道1输出PWM */
@@ -173,7 +173,8 @@ static void TIM1_Mode_Config(void)
     HAL_TIMEx_PWMN_Start(&motor1_htimx_bldcm, TIM_CHANNEL_3);
 
     /** CH4中断作为修改占空比时基 */
-    __HAL_TIM_ENABLE_IT(&motor1_htimx_bldcm,TIM_IT_CC4);
+//    __HAL_TIM_ENABLE_IT(&motor1_htimx_bldcm,TIM_IT_CC4);
+
 }
 
 /**
@@ -501,49 +502,48 @@ float HALL_GetSpeed_Hz()
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if(htim == (&motor1_htimx_bldcm)) {
-        int32_t CCR1 = 0;
-        int32_t CCR2 = 0;
-        int32_t CCR3 = 0;
-        CCR1 = map(SinTable[sin1TableIndex & 0xFF], HalfMax);
-        CCR1 = HalfMax + (Sin1Dir * CCR1);
-        CCR1 = (SinAmp * CCR1) / 24;
-
-        CCR2 = map(SinTable[sin2TableIndex & 0xFF], HalfMax);
-        CCR2 = HalfMax + (Sin2Dir * CCR2);
-        CCR2 = (SinAmp * CCR2) / 24;
-
-        CCR3 = map(SinTable[sin3TableIndex & 0xFF], HalfMax);
-        CCR3 = HalfMax + (Sin3Dir * CCR3);
-        CCR3 = (SinAmp * CCR3) / 24;
-
-        __HAL_TIM_SetCompare(htim, TIM_CHANNEL_1, (uint16_t) CCR1);
-        __HAL_TIM_SetCompare(htim, TIM_CHANNEL_2, (uint16_t) CCR2);
-        __HAL_TIM_SetCompare(htim, TIM_CHANNEL_3, (uint16_t) CCR3);
-
-        sin1TableIndex++;
-        sin2TableIndex++;
-        sin3TableIndex++;
-
-        if (sin1TableIndex >= SamplePoint) Sin1Dir = -1;
-        else Sin1Dir = 1;
-        if (sin2TableIndex >= SamplePoint) Sin2Dir = -1;
-        else Sin2Dir = 1;
-        if (sin3TableIndex >= SamplePoint) Sin3Dir = -1;
-        else Sin3Dir = 1;
-
-        if (sin1TableIndex >= 2 * SamplePoint)
-            sin1TableIndex = 0;
-        if (sin2TableIndex >= 2 * SamplePoint)
-            sin2TableIndex = 0;
-        if (sin3TableIndex >= 2 * SamplePoint)
-            sin3TableIndex = 0;
+//        int32_t CCR1 = 0;
+//        int32_t CCR2 = 0;
+//        int32_t CCR3 = 0;
+//        CCR1 = map(SinTable[sin1TableIndex & 0xFF], HalfMax);
+//        CCR1 = HalfMax + (Sin1Dir * CCR1);
+//        CCR1 = (SinAmp * CCR1) / 24;
+//
+//        CCR2 = map(SinTable[sin2TableIndex & 0xFF], HalfMax);
+//        CCR2 = HalfMax + (Sin2Dir * CCR2);
+//        CCR2 = (SinAmp * CCR2) / 24;
+//
+//        CCR3 = map(SinTable[sin3TableIndex & 0xFF], HalfMax);
+//        CCR3 = HalfMax + (Sin3Dir * CCR3);
+//        CCR3 = (SinAmp * CCR3) / 24;
+//
+//        __HAL_TIM_SetCompare(htim, TIM_CHANNEL_1, (uint16_t) CCR1);
+//        __HAL_TIM_SetCompare(htim, TIM_CHANNEL_2, (uint16_t) CCR2);
+//        __HAL_TIM_SetCompare(htim, TIM_CHANNEL_3, (uint16_t) CCR3);
+//
+//        sin1TableIndex++;
+//        sin2TableIndex++;
+//        sin3TableIndex++;
+//
+//        if (sin1TableIndex >= SamplePoint) Sin1Dir = -1;
+//        else Sin1Dir = 1;
+//        if (sin2TableIndex >= SamplePoint) Sin2Dir = -1;
+//        else Sin2Dir = 1;
+//        if (sin3TableIndex >= SamplePoint) Sin3Dir = -1;
+//        else Sin3Dir = 1;
+//
+//        if (sin1TableIndex >= 2 * SamplePoint)
+//            sin1TableIndex = 0;
+//        if (sin2TableIndex >= 2 * SamplePoint)
+//            sin2TableIndex = 0;
+//        if (sin3TableIndex >= 2 * SamplePoint)
+//            sin3TableIndex = 0;
     } else if(htim == (&TIM_TimeBaseStructure)){
         int32_t speed = (int32_t)((HALL_GetSpeed_Hz()/PPR)*60);
         set_computer_Speed_Location_value(Send_Speed_CMD, speed);
     }
     else if(htim == (&motor_htimx_hall))
     {
-
     }
 }
 

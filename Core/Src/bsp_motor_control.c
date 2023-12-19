@@ -33,6 +33,8 @@ void set_bldcm_enable(void)
     /** 开启定时器通道3输出PWM */
     HAL_TIM_PWM_Start(&motor1_htimx_bldcm,TIM_CHANNEL_3);
     HAL_TIMEx_PWMN_Start(&motor1_htimx_bldcm, TIM_CHANNEL_3);
+
+    HAL_TIM_PWM_Start(&motor1_htimx_bldcm,TIM_CHANNEL_4);
 }
 
 /**
@@ -55,6 +57,8 @@ void set_bldcm_disable(void)
     /** 开启定时器通道3输出PWM */
     HAL_TIM_PWM_Stop(&motor1_htimx_bldcm,TIM_CHANNEL_3);
     HAL_TIMEx_PWMN_Stop(&motor1_htimx_bldcm, TIM_CHANNEL_3);
+
+    HAL_TIM_PWM_Stop(&motor1_htimx_bldcm,TIM_CHANNEL_4);
 }
 
 /**
